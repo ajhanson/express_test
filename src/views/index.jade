@@ -1,12 +1,17 @@
 html
     head
         //- bower:css
+        link(rel='stylesheet', href='lib/bootstrap/dist/css/bootstrap.min.css')
         //- endbower
         //- bower:js
+        script(src='lib/jquery/dist/jquery.js')
+        script(src='lib/bootstrap/dist/js/bootstrap.js')
         //- endbower
         //- inject:css
+        link(rel="stylesheet", href="/css/styles.css")
         //- endinject
         //- inject:js
+        script(src="/js/scripts.js")
         //- endinject
         title The App
     body
