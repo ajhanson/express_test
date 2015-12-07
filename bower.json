@@ -1,0 +1,19 @@
+{
+  "name": "nodeexpress",
+  "description": "testing node and express",
+  "main": "app.js",
+  "authors": [
+    "ajhanson"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ]
+}
