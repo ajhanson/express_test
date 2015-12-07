@@ -4,17 +4,16 @@ var express = require('express');
 
 var app = express();
 
-var port = 5000;
+var port = 8080;
 
-app.get('/', function (req, res) {
-    res.send('eriamjh');
+app.use(express.static('public'));
+
+app.use(express.static('src/views'));
+
+app.get('/', function(req, res){
+    res.sendfile('index.html', { root: __dirname + "/src/views" } );
 });
 
-app.get('/test', function (req, res) {
-    res.send('testing');
-});
-
-
-app.listen(5000, function (err) {
+app.listen(port, function (err) {
     console.log('running server on port ' + port);
 });
