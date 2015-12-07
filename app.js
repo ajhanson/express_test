@@ -10,8 +10,10 @@ app.use(express.static('public'));
 
 app.use(express.static('src/views'));
 
-app.get('/', function(req, res){
-    res.sendfile('index.html', { root: __dirname + "/src/views" } );
+app.get('/', function (req, res) {
+    res.sendfile('index.html', {
+        root: __dirname + '/src/views'
+    });
 });
 
 app.listen(port, function (err) {
