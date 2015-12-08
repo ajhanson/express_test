@@ -24,10 +24,4 @@ describe('application', function () {
             .get('/about')
             .expect(404, done);
     });
-
-    it('/jade returns 200', function (done) {
-        request(server)
-            .get('/jade')
-            .expect(200, done);
-    });
 });
