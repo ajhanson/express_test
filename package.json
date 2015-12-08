@@ -18,9 +18,11 @@
     "gulp-inject": "^3.0.0",
     "gulp-jscs": "^3.0.2",
     "gulp-jshint": "^2.0.0",
+    "gulp-mocha": "^2.2.0",
     "gulp-nodemon": "^2.0.4",
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.1.0",
+    "supertest": "^1.1.0",
     "wiredep": "^2.2.2"
   }
 }

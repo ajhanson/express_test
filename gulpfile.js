@@ -2,8 +2,14 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var nodemon = require('gulp-nodemon');
+var mocha = require('gulp-mocha');
 
-var jsFiles = ['*.js', 'src/**/*.js'];
+var jsFiles = ['*.js', 'src/**/*.js', 'test/*.js'];
+
+gulp.task('test', function () {
+    return gulp.src(jsFiles)
+        .pipe(mocha());
+})
 
 gulp.task('style', function () {
     return gulp.src(jsFiles)
@@ -39,7 +45,7 @@ gulp.task('inject', function () {
         .pipe(gulp.dest('./src/views'));
 });
 
-gulp.task('serve', ['style', 'inject'], function () {
+gulp.task('serve', ['test', 'style', 'inject'], function () {
     var options = {
         script: 'app.js',
         delayTime: 1,
