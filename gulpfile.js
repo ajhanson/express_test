@@ -4,12 +4,12 @@ var jscs = require('gulp-jscs');
 var nodemon = require('gulp-nodemon');
 var mocha = require('gulp-mocha');
 
-var jsFiles = ['*.js', 'src/**/*.js', 'test/*.js'];
+var jsFiles = ['*.js', 'src/**/*.js'];
 
 gulp.task('test', function () {
-    return gulp.src(jsFiles)
+    return gulp.src('test/*.js')
         .pipe(mocha());
-})
+});
 
 gulp.task('style', function () {
     return gulp.src(jsFiles)
