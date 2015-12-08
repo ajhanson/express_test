@@ -4,11 +4,11 @@ var request = require('supertest');
 
 describe('application', function () {
     var server;
-    
+
     beforeEach(function () {
-       server = require('../app');
+        server = require('../app');
     });
-    
+
     afterEach(function () {
         server.close();
     });
@@ -24,4 +24,11 @@ describe('application', function () {
             .get('/about')
             .expect(404, done);
     });
+
+    it('/api/posts returns 200', function (done) {
+        request(server)
+            .get('/api/posts')
+            .expect(200, done);
+    });
+
 });
