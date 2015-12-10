@@ -5,6 +5,7 @@ var nodemon = require('gulp-nodemon');
 var mocha = require('gulp-mocha');
 
 var jsFiles = ['*.js', 'src/**/*.js'];
+var watchFiles = ['src/**/*.ejs'];
 
 gulp.task('test', function () {
     return gulp.src('test/*.js')
@@ -52,7 +53,7 @@ gulp.task('serve', ['test', 'style', 'inject'], function () {
         env: {
             'PORT': 8080
         },
-        watch: jsFiles
+        watch: watchFiles.concat(jsFiles)
     };
 
     return nodemon(options)

@@ -31,4 +31,11 @@ describe('application', function () {
             .expect(200, done);
     });
 
+    it('/auth/login returns 302 (redirect to profile)', function (done) {
+        request(server)
+            .post('/auth/login')
+            .expect(302, done);
+    });
+
+
 });
