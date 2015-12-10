@@ -2,7 +2,7 @@ var express = require('express');
 var mongodb = require('mongodb').MongoClient;
 
 var apiRouter = express.Router();
-var url = 'mongodb://localhost:27017/posts'
+var url = 'mongodb://localhost:27017/posts';
 
 var router = function () {
 
@@ -10,7 +10,9 @@ var router = function () {
         .get(function (req, res) {
             mongodb.connect(url, function (err, db) {
                 var collection = db.collection('posts');
-                collection.find({}).toArray(function (err, results) {
+                collection.find({}).sort({
+                    date: -1
+                }).limit(25).toArray(function (err, results) {
                     res.send(results);
                     db.close();
                 });
@@ -21,10 +23,11 @@ var router = function () {
             mongodb.connect(url, function (err, db) {
                 var collection = db.collection('posts');
                 collection.insertOne({
-                    post: req.content,
-                    author: req.author
+                    post: req.body.content,
+                    author: req.body.author,
+                    date: Date.now()
                 }, function (err, results) {
-                    res.send(true);
+                    res.json(true);
                     db.close();
                 });
             });
