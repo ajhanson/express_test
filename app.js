@@ -36,8 +36,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
     res.render('index', {
-        title: 'sent from app.js',
-        list: ['a', 'b']
+        title: 'sirius.ly?'
     });
 });
 

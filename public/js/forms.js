@@ -11,5 +11,16 @@
             app.posts.add($(this));
             evt.preventDefault();
         });
-    })
+
+        $('.form-js-signup').keydown(function (evt) {
+            if (evt.keyCode === 13) {
+                app.users.add($(this));
+                evt.preventDefault();
+            }
+        }).submit(function (evt) {
+            app.users.add($(this));
+            evt.preventDefault();
+        });
+
+    });
 })(window.app, document, jQuery);

@@ -5,7 +5,7 @@ var nodemon = require('gulp-nodemon');
 var mocha = require('gulp-mocha');
 
 var jsFiles = ['*.js', 'src/**/*.js'];
-var watchFiles = ['src/**/*.ejs'];
+var watchFiles = ['src/**/*.ejs', 'src/config/strategies/*.strategy'];
 
 gulp.task('test', function () {
     return gulp.src('test/*.js')
