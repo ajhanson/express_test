@@ -36,7 +36,9 @@ app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
     res.render('index', {
-        title: 'sirius.ly?'
+        title: 'sirius.ly?',
+        loggedin: req.isAuthenticated,
+        user: req.user
     });
 });
 

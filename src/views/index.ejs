@@ -122,21 +122,27 @@
                 </div>
 -->
                 <div class="well">
-                    <form class="form-horizontal form-js-posts" method="post" action="/api/posts">
-                        <h4>What's New</h4>
-                        <div class="form-group" style="padding:14px;">
-                            <textarea class="form-control" placeholder="Update your status" id="content"></textarea>
-                            <input type="hidden" value="anonymous" name="author" id="author" />
-                            <button class="btn btn-success pull-right" type="submit">Post</button>
-                        </div>
-                        <!--
-                        <ul class="list-inline">
-                            <li><a href="#"><i class="glyphicon glyphicon-align-left"></i></a></li>
-                            <li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li>
-                            <li><a href="#"><i class="glyphicon glyphicon-align-right"></i></a></li>
-                        </ul>
--->
-                    </form>
+                    <% if (loggedin) { %>
+                        <form class="form-horizontal form-js-posts" method="post" action="/api/posts">
+                    <div class="panel-heading"><a href="/auth/logout" class="pull-right">log out</a>
+                        <h4>What's New</h4></div>
+                            <div class="form-group" style="padding:14px;">
+                                <textarea class="form-control" placeholder="Update your status" id="content"></textarea>
+                                <input type="hidden" value="anonymous" name="author" id="author" />
+                                <button class="btn btn-success pull-right" type="submit">Post</button>
+                            </div>
+                        </form>
+                        <% } else { %>
+                            <form class="form form-js-signup" method="post" action="/auth/signup">
+                                <h4>Sign-up</h4>
+                                <div class="input-group text-center">
+                                    <input type="text" class="form-control input-lg" id="username" placeholder="Enter your email address">
+                                    <input type="password" class="form-control input-lg" id="password" placeholder="password" />
+                                    <button class="btn btn-success pull-right" type="submit">OK</button>
+                                </div>
+                            </form>
+                            <%}%>
+
                 </div>
 
                 <!--
@@ -168,17 +174,6 @@
             </div>
 
             <div class="col-md-4 col-sm-6">
-
-                <div class="well">
-                    <form class="form form-js-signup" method="post" action="/auth/signup">
-                        <h4>Sign-up</h4>
-                        <div class="input-group text-center">
-                            <input type="text" class="form-control input-lg" id="username" placeholder="Enter your email address">
-                            <input type="password" class="form-control input-lg" id="password" placeholder="password" />
-                            <button class="btn btn-success pull-right" type="submit">OK</button>
-                        </div>
-                    </form>
-                </div>
 
                 <!--
                 <div class="panel panel-default">

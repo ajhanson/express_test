@@ -12,8 +12,22 @@ var router = function (posts) {
                 failureRedirect: '/'
             }),
             function (req, res) {
-                res.redirect('/auth/profile');
+                res.redirect('/');
             });
+
+    // Express middleware function for logging out a user. The action is successful
+    // if the user is no longer authenticated.
+    authRouter.route('/logout')
+        .get(function (req, res, next) {
+            // Get rid of the session token. Then call `logout`; it does no harm.
+            req.logout();
+            req.session.destroy(function (err) {
+                if (err) {
+                    return next(err);
+                }
+                return res.redirect('/');
+            });
+        });
 
     authRouter.route('/signup')
         .post(function (req, res) {
@@ -37,6 +51,13 @@ var router = function (posts) {
 
 
     authRouter.route('/profile')
+        .all(function (req, res, next) {
+            if (!req.user) {
+                res.redirect('/');
+            } else {
+                next();
+            }
+        })
         .get(function (req, res) {
             res.json(req.user);
         });

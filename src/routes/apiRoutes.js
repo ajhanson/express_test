@@ -5,7 +5,13 @@ var apiRouter = express.Router();
 var url = 'mongodb://localhost:27017/posts';
 
 var router = function () {
-
+    apiRouter.use(function (req, res, next) {
+        if (!req.user) {
+            res.json(false);
+        } else {
+            next();
+        }
+    });
     apiRouter.route('/posts')
         .get(function (req, res) {
             mongodb.connect(url, function (err, db) {
