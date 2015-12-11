@@ -29,10 +29,8 @@
                 url: form.attr('action'),
                 method: 'POST',
                 data: {
-                    user: {
-                        username: form.find('#username').val(),
-                        password: form.find('#password').val()
-                    }
+                    username: form.find('#username').val(),
+                    password: form.find('#password').val()
                 },
                 dataType: 'json',
                 complete: function (data) {
