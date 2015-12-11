@@ -97,8 +97,12 @@
             <div class="collapse navbar-collapse" id="navbar-collapse2">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="#">Posts</a></li>
-                    <li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>
-                    <li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>
+                    <% if (loggedin) { %>
+                        <li><a href="/auth/logout" class="logout-js" role="button">Log out</a></li>
+                        <% } else { %>
+                            <li><a href="#SignUpModal" role="button" data-toggle="modal">Sign up</a></li>
+                            <% } %>
+                                <li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>
                 </ul>
             </div>
         </div>
@@ -124,24 +128,24 @@
                 <div class="well">
                     <% if (loggedin) { %>
                         <form class="form-horizontal form-js-posts" method="post" action="/api/posts">
-                    <div class="panel-heading"><a href="/auth/logout" class="pull-right">log out</a>
-                        <h4>What's New</h4></div>
+                            <div class="panel-heading">
+                                <h4>What's New</h4></div>
                             <div class="form-group" style="padding:14px;">
                                 <textarea class="form-control" placeholder="Update your status" id="content"></textarea>
-                                <input type="hidden" value="anonymous" name="author" id="author" />
+                                <input type="hidden" value="<%= user.username %>" name="author" id="author" />
                                 <button class="btn btn-success pull-right" type="submit">Post</button>
                             </div>
                         </form>
                         <% } else { %>
-                            <form class="form form-js-signup" method="post" action="/auth/signup">
-                                <h4>Sign-up</h4>
+                            <form class="form form-js-login" method="post" action="/auth/login">
+                                <h4>log in</h4>
                                 <div class="input-group text-center">
-                                    <input type="text" class="form-control input-lg" id="username" placeholder="Enter your email address">
+                                    <input type="text" class="form-control input-lg" id="username" placeholder="Enter your user name">
                                     <input type="password" class="form-control input-lg" id="password" placeholder="password" />
-                                    <button class="btn btn-success pull-right" type="submit">OK</button>
+                                    <button class="btn btn-success pull-right" type="submit">Log in</button>
                                 </div>
                             </form>
-                            <%}%>
+                            <% } %>
 
                 </div>
 
@@ -207,24 +211,32 @@
     <!--/main-->
 
     <!--login modal-->
-    <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div id="SignUpModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h2 class="text-center"><img src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle"><br>Login</h2>
+                    <h2 class="text-center">sign up</h2>
                 </div>
                 <div class="modal-body">
-                    <form class="form col-md-12 center-block" method="post" action="/auth/login">
+                    <form class="form col-md-12 center-block form-js-signup" method="post" action="/auth/signup">
                         <div class="form-group">
-                            <input type="text" name="username" class="form-control input-lg" placeholder="Email">
+                            <input type="text" id="username" class="form-control input-lg" placeholder="username">
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" class="form-control input-lg" placeholder="Password">
+                            <input type="text" id="name" class="form-control input-lg" placeholder="first name">
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary btn-lg btn-block">Sign In</button>
-                            <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
+                            <input type="text" id="email" class="form-control input-lg" placeholder="email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" class="form-control input-lg" placeholder="password">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password2" class="form-control input-lg" placeholder="verify password">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-lg btn-block">Sign Up</button>
                         </div>
                     </form>
                 </div>

@@ -22,6 +22,7 @@ module.exports = function () {
                         var user = results;
                         done(null, user);
                     } else {
+                        console.log('bad password');
                         done(null, false, {
                             message: 'bad password'
                         });

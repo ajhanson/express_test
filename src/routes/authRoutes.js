@@ -15,11 +15,8 @@ var router = function (posts) {
                 res.redirect('/');
             });
 
-    // Express middleware function for logging out a user. The action is successful
-    // if the user is no longer authenticated.
     authRouter.route('/logout')
-        .get(function (req, res, next) {
-            // Get rid of the session token. Then call `logout`; it does no harm.
+        .post(function (req, res, next) {
             req.logout();
             req.session.destroy(function (err) {
                 if (err) {
@@ -36,7 +33,9 @@ var router = function (posts) {
                 var collection = db.collection('users');
                 var user = {
                     username: req.body.user.username,
-                    password: req.body.user.password
+                    password: req.body.user.password,
+                    email: req.body.user.email,
+                    name: req.body.user.name
                 };
 
                 collection.insert(user, function (err, results) {
@@ -48,7 +47,6 @@ var router = function (posts) {
             });
 
         });
-
 
     authRouter.route('/profile')
         .all(function (req, res, next) {

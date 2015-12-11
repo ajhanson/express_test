@@ -14,11 +14,21 @@
 
         $('.form-js-signup').keydown(function (evt) {
             if (evt.keyCode === 13) {
-                app.users.add($(this));
+                $(this).submit();
                 evt.preventDefault();
             }
         }).submit(function (evt) {
             app.users.add($(this));
+            evt.preventDefault();
+        });
+
+        $('.form-js-login').keydown(function (evt) {
+            if (evt.keyCode === 13) {
+                $(this).submit();
+                evt.preventDefault();
+            }
+        }).submit(function (evt) {
+            app.users.login($(this));
             evt.preventDefault();
         });
 
