@@ -1,5 +1,8 @@
 var passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy;
+    LocalStrategy = require('passport-local').Strategy,
+    mongodb = require('mongodb');
+
+var url = 'mongodb://localhost:27017/posts';
 
 module.exports = function () {
     passport.use(new LocalStrategy({
@@ -7,10 +10,23 @@ module.exports = function () {
             passwordField: 'password'
         },
         function (username, password, done) {
-            var user = {
-                username: username,
-                password: password
-            };
-            done(null, user);
+            console.log(username);
+            console.log(password);
+            mongodb.connect(url, function (err, db) {
+                var collection = db.collection('users');
+                collection.findOne({
+                    username: username
+                }, function (err, results) {
+                    console.log(results);
+                    if (results !== null && results.password === password) {
+                        var user = results;
+                        done(null, user);
+                    } else {
+                        done(null, false, {
+                            message: 'bad password'
+                        });
+                    }
+                });
+            })
         }));
 };

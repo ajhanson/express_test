@@ -5,7 +5,7 @@ var nodemon = require('gulp-nodemon');
 var mocha = require('gulp-mocha');
 
 var jsFiles = ['*.js', 'src/**/*.js'];
-var watchFiles = ['src/**/*.ejs'];
+var watchFiles = ['src/**/*.ejs', 'src/config/strategies/*.strategy'];
 
 gulp.task('test', function () {
     return gulp.src('test/*.js')
@@ -40,7 +40,7 @@ gulp.task('inject', function () {
         ignorePath: '../../public/'
     };
 
-    return gulp.src('./src/views/*.jade')
+    return gulp.src('./src/views/*.ejs')
         .pipe(wiredep(options))
         .pipe(inject(injectSrc, injectOptions))
         .pipe(gulp.dest('./src/views'));
