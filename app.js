@@ -13,8 +13,9 @@ var session = require('express-session');
 var port = process.env.PORT || 8080;
 var secret = process.env.secret || 'expresstest';
 
-var authRouter = require('./src/routes/authRoutes');
-var apiRouter = require('./src/routes/apiRoutes');
+var dbService = require('./src/services/dbService')();
+var authRouter = require('./src/routes/authRoutes')(dbService);
+var apiRouter = require('./src/routes/apiRoutes')(dbService);
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
@@ -27,8 +28,8 @@ app.use(session({
 }));
 require('./src/config/passport')(app);
 
-app.use('/auth', authRouter());
-app.use('/api', apiRouter());
+app.use('/auth', authRouter);
+app.use('/api', apiRouter);
 
 app.set('views', './src/views');
 
