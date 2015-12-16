@@ -10,7 +10,9 @@ describe('application', function () {
     });
 
     afterEach(function () {
-        server.close();
+        if (server !== null) {
+            server.close();
+        }
     });
 
     it('/ returns 200', function (done) {
