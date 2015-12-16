@@ -9,11 +9,9 @@ describe('application', function () {
         server = require('../app');
     });
 
-    afterEach(function () {
-        if (server !== null) {
-            server.close();
-        }
-    });
+//    afterEach(function () {
+//        server.close();
+//    });
 
     it('/ returns 200', function (done) {
         request(server)
