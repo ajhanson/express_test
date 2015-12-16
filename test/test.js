@@ -25,13 +25,13 @@ describe('application', function () {
             .expect(404, done);
     });
 
-    it('/api/posts returns 200', function (done) {
+    xit('/api/posts returns 200', function (done) {
         request(server)
             .get('/api/posts')
             .expect(200, done);
     });
 
-    it('/auth/login returns 302 (redirect to profile)', function (done) {
+    xit('/auth/login returns 302 (redirect to profile)', function (done) {
         request(server)
             .post('/auth/login')
             .expect(302, done);

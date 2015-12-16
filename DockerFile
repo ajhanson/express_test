@@ -1,17 +1,19 @@
-FROM centos:centos6
-
-# Enable EPEL for Node.js
-RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+FROM ubuntu:14.04
 
 # Install Node...
-RUN yum install -y npm bower
+RUN apt-get update
 
-# Copy app to /src
-COPY . /src
+# install npm
+RUN apt-get install -y -qq npm
+RUN ln -s /usr/bin/nodejs /usr/bin/node
+
+# install bower
+RUN npm install --global bower
 
 # Install app and dependencies into /src
-RUN cd /src; npm install; bower install
+RUN cd /src; npm install
+RUN cd /src; bower install
 
 EXPOSE 8080
 
-CMD cd /src && node ./app.js
+CMD cd /src && npm start
